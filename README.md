@@ -2,7 +2,6 @@
 This is a bash shell script that uses [Screen](https://www.gnu.org/software/screen/) and [Cronjobs](https://cronitor.io/guides/cron-jobs) to backup a Minecraft server. *This script uses variables and is dependant upon file paths so make sure to amend this script with your setup*
 
 
-
 ## How does the script work?
 It uses Screen using the `-X stuff` argument to send messages to everyone in the server (using `/tellraw`)
 ```bash
@@ -27,7 +26,17 @@ Turn back on auto saving `/save-on`
 ```bash
 screen -r minecraft -X stuff 'tellraw @a ["",{"text":"III","obfuscated":true,"color":"red"},{"text":" BACKUP COMPLETED ","color":"green"},{"text":"III","obfuscated":true,"color":"red"}]\n'$(echo -ne '\r')
 ```
-# Things to look out for
+
+## Crontab
+Crontabs are a way to automatically run a certain script with a given time or interval
+
+a Cronjob that runs this script *every Monday at 3am* would look like this:
+```bash
+0 3 * * 1 ~/scripts/backup.sh
+```
+To learn more about how to use the cronjob's time and date system, use [this](https://crontab.guru/#0_3_*_*_1)
+
+### Things to look out for
 - This script uses variables, make sure to amend this to your situation
 ```bash
 MINECRAFT_DIR=~/minecraft
@@ -44,12 +53,14 @@ screen -S minecraft
 ```bash
 screen -S server
 ```
-# Crontab
-Crontabs are a way to automatically run a certain script with a given time or interval
+### Installation
+Just clone this repository using git (I like storing scripts within their own folder)
 
-a Cronjob that runs this script *every Monday at 3am* would look like this:
 ```bash
-0 3 * * 1 ~/scripts/backup.sh
+cd && mkdir -p ~/scripts && git clone https://github.com/Isoldien/MCBackup ~/scripts && cd ~/scripts
 ```
-To learn more about how to use the cronjob's time and date system, use [this](https://crontab.guru/#0_3_*_*_1)
+  - Before running, make sure to amend the variables, screen names, and file path. When you run this script, it should be on the screen as a title instead of a message
+
+
+
 
