@@ -61,6 +61,6 @@ cd && mkdir -p ~/scripts && git clone https://github.com/Isoldien/MCBackup ~/scr
 ```
   - Before running, make sure to amend the variables, screen names, and file path. When you run this script, it should be on the screen as a title instead of a message
 
-
+👍
 
 
